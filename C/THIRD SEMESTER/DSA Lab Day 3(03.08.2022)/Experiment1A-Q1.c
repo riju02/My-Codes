@@ -46,5 +46,5 @@ int main()
         }
     }
     printf("\n The Largest Element is- %d", c);
-    printf("\n The Smallest Elemet is- %d", d);
+    printf("\n The Smallest Element is- %d", d);
 }
