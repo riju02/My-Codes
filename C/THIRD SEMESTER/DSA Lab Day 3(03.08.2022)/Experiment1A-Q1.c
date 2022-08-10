@@ -28,23 +28,11 @@ int main()
     {
         b[i]=a[i];
     }
-    int c = b[0], d = b[0];
     printf("\n The Sorted Array is- ");
     for (i = 0; i < n_035; i++)
     {
         printf(" %d",b[i]);
     }
-    for (i = 0; i < n_035; i++)
-    {
-        if (b[i] > c)
-        {
-            c = b[i];
-        }
-        if (b[i] < d)
-        {
-            d = b[i];
-        }
-    }
-    printf("\n The Largest Element is- %d", c);
-    printf("\n The Smallest Element is- %d", d);
+    printf("\n The Largest Element is- %d", b[n_035-1]);
+    printf("\n The Smallest Element is- %d", b[0]);
 }
