@@ -17,11 +17,11 @@ int main()
         printf("Enter array element: ");
         scanf("%d", &arr_dyn[i]);
     }
-    printf("\n Possible Combination of Bubble Sort- ");
+    printf("\n Possible Combination of Bubble Sort- \n");
     bubble_sort(arr_dyn, n_035);                        
-    printf("Smallest number:%d\n", arr_dyn[n_035 - 1]); 
+    printf("\n Smallest number:%d \n\n", arr_dyn[n_035 - 1]); 
     most_sig(arr_dyn, n_035); 
-    Printf("\n The Descending Sorted Array- ");
+    printf("\n The Descending Sorted Array- ");
     print_array(arr_dyn,n_035);
 
     return 0;
