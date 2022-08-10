@@ -58,7 +58,7 @@ void most_sig(int *arr, int n_035)
     int max_el;
     int count_max_el_update = 0;
 
-    for (int i = 0; i < n_035 - 1; i++)
+    for (int i = 0; i < n_035; i++)
     {
         int count = 1;
         for (int j = i + 1; j < n_035; j++){
