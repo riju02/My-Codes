@@ -19,7 +19,7 @@ int main()
     createList(n);
 
     printf("\nData in the list \n");
-    displayList();
+    displayList(); 
 
     printf("\nPress 1 to delete last node: ");
     scanf("%d", &choice);
@@ -40,9 +40,6 @@ void createList(int n)
 
     head = (struct node *)malloc(sizeof(struct node));
 
-    /*
-     * If unable to allocate memory for head node
-     */
     if (head == NULL)
     {
         printf("Unable to allocate memory.");

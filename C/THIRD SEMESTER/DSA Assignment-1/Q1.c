@@ -1,105 +1,81 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-struct LLNode
+// A Linked List Node
+struct Node
 {
     int data;
-    struct LLNode *next;
+    struct Node *next;
 };
 
-void insertAtBeginning(struct LLNode **head, int dataToBeInserted)
+// Helper function to insert a new node at the beginning of the linked list
+void push(struct Node **headRef, int data)
 {
-    struct LLNode *curr = new LLNode;
-    curr->data = dataToBeInserted;
-    curr->next = NULL;
-    if (*head == NULL)
-        *head = curr; 
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
 
-    else
-    {
-        curr->next = *head; 
-        *head = curr;
-    }
+    newNode->data = data;
+    newNode->next = *headRef;
+    *headRef = newNode;
 }
 
-void display(struct LLNode **node)
+// Helper function to print the linked list
+void printList(char *msg, struct Node *node)
 {
-    struct LLNode *temp = *node;
-    while (temp != NULL)
+    printf("%s: ", msg);
+    while (node)
     {
-        if (temp->next != NULL)
-            cout << temp->data << "->";
+        printf("%d —> ", node->data);
+        node = node->next;
+    }
+    printf("NULL\n");
+}
+
+// Function to pairwise swap adjacent nodes of a linked list
+void rearrange(struct Node **headRef)
+{
+    // if the list is empty or contains just one node
+    if (*headRef == NULL || (*headRef)->next == NULL)
+    {
+        return;
+    }
+
+    struct Node *curr = *headRef, *prev = NULL;
+
+    // consider two nodes at a time and swap their links
+    while (curr != NULL && curr->next != NULL)
+    {
+        struct Node *temp = curr->next;
+        curr->next = temp->next;
+        temp->next = curr;
+
+        if (prev == NULL)
+        {
+            *headRef = temp;
+        }
         else
-            cout << temp->data;
+        {
+            prev->next = temp;
+        }
 
-        temp = temp->next;
+        prev = curr;
+        curr = curr->next;
     }
-    printf(“\n\n”);
-}
-void swapNodes(struct LLNode **head_ref, int x, int y)
-{
-    if (x == y)
-    {
-        return;
-    }
-
-    struct LLNode *x_prev = NULL, *x_curr = *head_ref;
-    while (x_curr && x_curr->data != x)
-    {
-        x_prev = x_curr;
-        x_curr = x_curr->next;
-    }
-
-    struct LLNode *y_prev = NULL, *y_curr = *head_ref;
-    while (y_curr && y_curr->data != y)
-    {
-        y_prev = y_curr;
-        y_curr = y_curr->next;
-    }
-    
-    if (x_curr == NULL || y_curr == NULL)
-    {
-        return;
-    }
-    
-    if (x_prev != NULL)
-    {
-        x_prev->next = y_curr;
-    }
-    else
-    {
-        *head_ref = y_curr;
-    }
-    if (y_prev != NULL)
-        y_prev->next = x_curr;
-    else
-    {
-        *head_ref = x_curr;
-    }
-    struct LLNode *temp = y_curr->next;
-    y_curr->next = x_curr->next;
-    x_curr->next = temp;
 }
 
-int main()
+int main(void)
 {
-    struct LLNode *head = NULL;
-    insertAtBeginning(&head, 9);
-    insertAtBeginning(&head, 8);
-    insertAtBeginning(&head, 7);
-    insertAtBeginning(&head, 6);
-    insertAtBeginning(&head, 5);
-    insertAtBeginning(&head, 4);
-    insertAtBeginning(&head, 3);
-    insertAtBeginning(&head, 2);
-    insertAtBeginning(&head, 1);
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    unsigned n = sizeof(arr) / sizeof(arr[0]);
 
-    printf("\n Input linked list is: ");
-    display(&head);
-    int x = 2, y = 7;
-    swapNodes(&head, x, y);
+    struct Node *head = NULL;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        push(&head, arr[i]);
+    }
 
-    printf(“output LL after swapping %d",x," and %d”,y  “ is: ";
-    display(&head);
+    printList("Before", head);
+    rearrange(&head);
+    printList("After ", head);
 
-return 0;
+    return 0;
 }
