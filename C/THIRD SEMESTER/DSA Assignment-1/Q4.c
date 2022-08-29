@@ -1,13 +1,13 @@
 #include <stdio.h>
-#define MAX 100
 
 int main()
 {
-    int arr[MAX], n, i;
+    int n, i;
     int num, count;
 
     printf("Enter total number of elements: ");
     scanf("%d", &n);
+    int arr[n];
     printf("Enter array elements:\n");
     for (i = 0; i < n; i++)
     {
