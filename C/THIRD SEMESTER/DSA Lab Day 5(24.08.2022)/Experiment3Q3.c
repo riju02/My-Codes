@@ -1,56 +1,98 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node
+struct node
 {
-    struct Node *prev;
-    int data;
-    struct Node *next;
-};
+    int num;
+    struct node *preptr;
+    struct node *nextptr;
+} * stnode, *ennode;
 
-struct Node *first = NULL;
+void DlListcreation(int n);
+void displayDlList();
 
-void create(int A[], int n)
+void DlListcreation(int n)
 {
-    struct Node *t, *last;
-    int i;
+    int i, num;
+    struct node *fnNode;
 
-    first = (struct Node *)malloc(sizeof(struct Node));
-    first->data = A[0];
-    first->prev = first->next = NULL;
-    last = first;
-
-    for (i = 1; i < n; i++)
+    if (n >= 1)
     {
-        t = (struct Node *)malloc(sizeof(struct Node));
-        t->data = A[i];
-        t->next = last->next;
-        t->prev = last;
-        last->next = t;
-        last = t;
+        stnode = (struct node *)malloc(sizeof(struct node));
+
+        if (stnode != NULL)
+        {
+            printf(" Input data for node 1 : ");
+            scanf("%d", &num);
+
+            stnode->num = num;
+            stnode->preptr = NULL;
+            stnode->nextptr = NULL;
+            ennode = stnode;
+
+            for (i = 2; i <= n; i++)
+            {
+                fnNode = (struct node *)malloc(sizeof(struct node));
+
+                if (fnNode != NULL)
+
+                {
+                    printf(" Input data for node %d : ", i);
+                    scanf("%d", &num);
+                    fnNode->num = num;
+                    fnNode->preptr = ennode;
+                    fnNode->nextptr = NULL;
+
+                    ennode->nextptr = fnNode;
+                    ennode = fnNode;
+                }
+                else
+                {
+                    printf(" Memory can not be allocated.");
+                    break;
+                }
+            }
+        }
+        else
+        {
+            printf(" Memory can not be allocated.");
+        }
     }
 }
 
-void Display(struct Node *p)
+void displayDlList()
 {
-    while (p)
+    struct node *tmp;
+    int n = 1;
+    if (stnode == NULL)
     {
-        printf("%d\n", p->data);
-        p = p->next;
+        printf(" No data found in the List yet.");
+    }
+    else
+    {
+        tmp = stnode;
+        printf("\n\n Data entered on the list are :\n");
+
+        while (tmp != NULL)
+        {
+            printf(" node %d : %d\n", n, tmp->num);
+            n++;
+            tmp = tmp->nextptr;
+        }
     }
 }
 
 int main()
 {
-    int n_035;
-    printf("\n Enter The Elements you want to add in linklist: ");
-    scanf("%d", &n_035);
-    int A[n_035];
+    int s;
+    stnode = NULL;
+    ennode = NULL;
+    printf("\n\n Doubly Linked List : Create and display a doubly linked list :\n");
+    printf("-------------------------------------------------------------------\n");
 
-    create(A, n_035);
+    printf(" Input the number of nodes : ");
+    scanf("%d", &s);
 
-
-    Display(first);
-
-    return 0;
+    DlListcreation(s);
+    displayDlList();
 }
