@@ -8,10 +8,10 @@ struct node
     struct node *nextptr;
 } * stnode, *ennode;
 
-void ClListcreation(int n);
+void DlListcreation(int n);
 void displayDlList();
 
-void ClListcreation(int n)
+void DlListcreation(int n)
 {
     int i, num;
     struct node *fnNode;
@@ -87,12 +87,12 @@ int main()
     int s;
     stnode = NULL;
     ennode = NULL;
-    printf("\n\n Circular Linked List : Create and display a circular linked list :\n");
+    printf("\n\n Doubly Linked List : Create and display a doubly linked list :\n");
     printf("-------------------------------------------------------------------\n");
 
     printf(" Input the number of nodes : ");
     scanf("%d", &s);
 
-    ClListcreation(s);
+    DlListcreation(s);
     displayDlList();
 }
