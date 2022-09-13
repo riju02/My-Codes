@@ -25,7 +25,7 @@ int take_input(int n, int m, int array[n][m]){
     return counter;
 }
 
-void sparx(int m, int n, int counter){
+void sparse(int m, int n, int counter){
     if (counter > ((m * n) / 2))
     {
         printf("The given matrix is sparse matrix \n");
@@ -50,6 +50,6 @@ int main()
     counter=take_input(n, m, array);
     printf("\n The Matrix is- \n");
     display(m,n,array);
-    sparx(m, n, counter); 
+    sparse(m, n, counter); 
     return 0;
 }
