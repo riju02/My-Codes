@@ -58,7 +58,7 @@ int main()
         }
     }
     printf("\n The product of Two Polynomial is- ");
-    for (int i = n_035 ; i >= 0; i--)
+    for (int i = n_035 - 1; i >= 0; i--)
     {
         if(i==0){
         printf(" %d x^%d ", prod[i], i);
